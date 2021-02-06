@@ -10,46 +10,37 @@
         <p>
         <div class="pull-left info">
           <p><?php echo $this->session->userdata('nama');
-          $id = $this->session->userdata('tipeuser') ?></p>
+          $id = $this->session->userdata('level') ?></p>
           <a href="<?php echo site_url('Welcome'); ?>"><i class="fa fa-circle text-success"></i> Online</a>
         </div></p>
       </div>
-      <form action="#" method="get" class="sidebar-form">
-        <div class="input-group">
-          <input type="text" name="q" class="form-control" placeholder="Search...">
-          <span class="input-group-btn">
-                <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
-                </button>
-              </span>
-        </div>
-      </form>
       <!-- /.search form -->
       <ul class="sidebar-menu" data-widget="tree">
-        <li class="header">MAIN NAVIGATION</li>
         <li class="active treeview menu-open">
           <li><a href="index2.html"><i class="fa fa-book"></i> <span>Dashboard</span></a></li>
-      <li><a href="index2.html"><i class="fa fa-book"></i> <span>Transaksi Penjualan</span></a></li>
-      <li><a href="index2.html"><i class="fa fa-book"></i> <span>Transaksi Refund</span></a></li>
         </li>
-
+          <li class="treeview">
+            <a href="#">
+              <i class="fa fa-edit"></i> <span>Master Data</span>
+              <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+            </a>
+            <ul class="treeview-menu">
+          <?php foreach ($masterdata as $masterdata) {
+               echo "<li><a href='site_url(".$masterdata->link.")'><i class='fa fa-circle-o'></i><span>".$masterdata->menu."</span></a></li>";
+           } ?>
+        </ul>
+        </li>
+        <?php $query = $this->db->query("SELECT * FROM tb_akses where id_menu = '17' and view = '1' and id_level = $id")->num_rows(); 
+        if($query != 0){ ?>
+          <li><a href="<?php echo site_url('transaksi'); ?> "><i class="fa fa-book"></i> <span>Transaksi Penjualan</span></a></li>
+        <?php } ?>
+        <?php $query = $this->db->query("SELECT * FROM tb_akses where id_menu = '18' and view = '1' and id_level = $id")->num_rows(); 
+        if($query != 0){ ?>
+          <li><a href="<?php echo site_url('refund'); ?> "><i class="fa fa-book"></i> <span>Transaksi Refund</span></a></li>
+        <?php } ?>
         <li class="treeview">
-          <a href="#">
-            <i class="fa fa-edit"></i> <span>Master Data</span>
-            <span class="pull-right-container">
-              <i class="fa fa-angle-left pull-right"></i>
-            </span>
-          </a>
-          <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Produk</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Variant</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Merk/Brand</a></li>
-      <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Kategori</a></li>
-      <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Marketplace</a></li>
-      <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Jasa Expedisi</a></li>
-      <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Stock Opname</a></li>
-          </ul>
-        </li>
-    <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Arus Kas</span>
             <span class="pull-right-container">
@@ -57,12 +48,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Kas Umum</a></li>
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Kas Masuk</a></li>
-      <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Kas Keluar</a></li>
+          <?php foreach ($kas as $kas) { 
+               echo "<li><a href='site_url(".$kas->link.")'><i class='fa fa-circle-o'></i><span>".$kas->menu."</span></a></li>";
+            } ?>
           </ul>
         </li>
-    <li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>Laporan</span>
             <span class="pull-right-container">
@@ -70,13 +61,12 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Penjualan</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Kas Keluar</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Stock Barang</a></li>
-      <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Laba Rugi</a></li>
+            <?php foreach ($laporan as $laporan) { ?>
+               <li><a href="<?php echo site_url($laporan->link); ?> "><i class="fa fa-circle-o"></i> <span><?php echo $laporan->menu ?></span></a></li>
+            <?php } ?>
           </ul>
         </li>
-    <li class="treeview">
+        <li class="treeview">
           <a href="#">
             <i class="fa fa-edit"></i> <span>User Pengguna</span>
             <span class="pull-right-container">
@@ -84,12 +74,16 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <li><a href="pages/forms/general.html"><i class="fa fa-circle-o"></i>Input User</a></li>
-            <li><a href="pages/forms/advanced.html"><i class="fa fa-circle-o"></i>Input Level</a></li>
-            <li><a href="pages/forms/editors.html"><i class="fa fa-circle-o"></i>Hak Akses</a></li>
+            <?php foreach ($user as $user) { ?>
+               <li><a href="<?php echo site_url($user->link); ?> "><i class="fa fa-circle-o"></i><span><?php echo $user->menu ?></span></a></li>
+            <?php } ?>
           </ul>
         </li>
-        <li><a href="https://adminlte.io/docs"><i class="fa fa-book"></i> <span>Settings</span></a></li>
+        
+        <?php $query = $this->db->query("SELECT * FROM tb_akses where id_menu = '19' and view = '1' and id_level = $id")->num_rows(); 
+        if($query != 0){ ?>
+          <li><a href="<?php echo site_url('setting'); ?> "><i class="fa fa-book"></i> <span>Setting</span></a></li>
+        <?php } ?>
       </ul>
     </section>
     <!-- /.sidebar -->
