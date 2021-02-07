@@ -54,3 +54,24 @@ $route['login'] = 'C_Login';
 $route['dashboard'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+
+$route['brand'] = 'C_Brand';
+$route['brand-edit/(:any)'] = 'C_Brand/edit/$1';
+
+$route['kategori'] = 'C_Kategori';
+$route['kategori-edit/(:any)'] = 'C_Kategori/edit/$1';
+
+$route['varian'] = 'C_Varian';
+$route['varian-edit/(:any)'] = 'C_Varian/edit/$1';
+
+$route['barang'] = 'C_Barang';
+$route['imei/(:any)'] = 'C_Barang/imei/$1';
+$route['barang-edit/(:any)'] = 'C_Barang/edit/$1';
+$route['barang-detail/(:any)'] = 'C_Barang/detail/$1';
+
+$route['marketplace'] = 'C_Marketplace';
+$route['marketplace-edit/(:any)'] = 'C_Marketplace/edit/$1';
+
+$route['ekspedisi'] = 'C_Ekspedisi';
+$route['ekspedisi-edit/(:any)'] = 'C_Ekspedisi/edit/$1';

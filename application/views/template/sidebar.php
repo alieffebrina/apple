@@ -27,9 +27,10 @@
               </span>
             </a>
             <ul class="treeview-menu">
-          <?php foreach ($masterdata as $masterdata) {
-               echo "<li><a href='site_url(".$masterdata->link.")'><i class='fa fa-circle-o'></i><span>".$masterdata->menu."</span></a></li>";
-           } ?>
+          <?php $masterdata = $this->db->query("SELECT * FROM tb_menu join tb_akses on tb_akses.id_menu = tb_menu.id_menu where tb_menu.grup = 'masterdata' and tb_akses.view = '1' and tb_akses.id_level = $id")->result(); 
+            foreach ($masterdata as $masterdata) { ?>
+               <li><a href='<?php echo site_url($masterdata->link) ?>'><i class='fa fa-circle-o'></i><span><?php echo $masterdata->menu ?></span></a></li>
+            <?php } ?>
         </ul>
         </li>
         <?php $query = $this->db->query("SELECT * FROM tb_akses where id_menu = '17' and view = '1' and id_level = $id")->num_rows(); 
@@ -48,9 +49,11 @@
             </span>
           </a>
           <ul class="treeview-menu">
-          <?php foreach ($kas as $kas) { 
-               echo "<li><a href='site_url(".$kas->link.")'><i class='fa fa-circle-o'></i><span>".$kas->menu."</span></a></li>";
-            } ?>
+
+          <?php $kas = $this->db->query("SELECT * FROM tb_menu join tb_akses on tb_akses.id_menu = tb_menu.id_menu where tb_menu.grup = 'kas' and tb_akses.view = '1' and tb_akses.id_level = $id")->result(); 
+            foreach ($kas as $kas) { ?>
+               <li><a href='<?php echo site_url($kas->link) ?>'><i class='fa fa-circle-o'></i><span><?php echo $kas->menu ?></span></a></li>
+            <?php } ?>
           </ul>
         </li>
         <li class="treeview">
@@ -61,8 +64,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <?php foreach ($laporan as $laporan) { ?>
-               <li><a href="<?php echo site_url($laporan->link); ?> "><i class="fa fa-circle-o"></i> <span><?php echo $laporan->menu ?></span></a></li>
+          <?php $laporan = $this->db->query("SELECT * FROM tb_menu join tb_akses on tb_akses.id_menu = tb_menu.id_menu where tb_menu.grup = 'laporan' and tb_akses.view = '1' and tb_akses.id_level = $id")->result(); 
+            foreach ($laporan as $laporan) { ?>
+               <li><a href='<?php echo site_url($laporan->link) ?>'><i class='fa fa-circle-o'></i><span><?php echo $laporan->menu ?></span></a></li>
             <?php } ?>
           </ul>
         </li>
@@ -74,8 +78,9 @@
             </span>
           </a>
           <ul class="treeview-menu">
-            <?php foreach ($user as $user) { ?>
-               <li><a href="<?php echo site_url($user->link); ?> "><i class="fa fa-circle-o"></i><span><?php echo $user->menu ?></span></a></li>
+          <?php $user = $this->db->query("SELECT * FROM tb_menu join tb_akses on tb_akses.id_menu = tb_menu.id_menu where tb_menu.grup = 'user' and tb_akses.view = '1' and tb_akses.id_level = $id")->result(); 
+            foreach ($user as $user) { ?>
+               <li><a href='<?php echo site_url($user->link) ?>'><i class='fa fa-circle-o'></i><span><?php echo $user->menu ?></span></a></li>
             <?php } ?>
           </ul>
         </li>
