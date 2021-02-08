@@ -75,3 +75,18 @@ $route['marketplace-edit/(:any)'] = 'C_Marketplace/edit/$1';
 
 $route['ekspedisi'] = 'C_Ekspedisi';
 $route['ekspedisi-edit/(:any)'] = 'C_Ekspedisi/edit/$1';
+
+$route['penjualan'] = 'C_Penjualan';
+// $route['ekspedisi-edit/(:any)'] = 'C_Ekspedisi/edit/$1';
+
+$route['level'] = 'C_Level';
+$route['level-edit/(:any)'] = 'C_Level/edit/$1';
+$route['level-akses/(:any)'] = 'C_Level/akses/$1';
+
+$route['user'] = 'C_User';
+$route['user-edit/(:any)'] = 'C_User/edit/$1';
+
+$route['akses'] = 'C_Setting';
+$route['akses-edit/(:any)'] = 'C_Setting/edit/$1';
+
+$route['setting'] = 'C_Setting';

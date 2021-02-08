@@ -28,7 +28,7 @@ class M_Setting extends CI_Model {
 
     function editv($iduser,$submenu,$view){
             $where = array(
-                'tipeuser' =>  $iduser,
+            'id_level' =>  $iduser,
                 'id_menu' => $view
             );
 
@@ -42,7 +42,7 @@ class M_Setting extends CI_Model {
 
     function edita($iduser,$submenu,$add){
         $where = array(
-            'tipeuser' =>  $iduser,
+            'id_level' =>  $iduser,
             'id_menu' => $add
         );
 
@@ -56,7 +56,7 @@ class M_Setting extends CI_Model {
 
     function edite($iduser,$submenu,$edit){
         $where = array(
-            'tipeuser' =>  $iduser,
+            'id_level' =>  $iduser,
             'id_menu' => $edit
         );
 
@@ -71,7 +71,7 @@ class M_Setting extends CI_Model {
 
     function editd($iduser,$submenu,$delete){
         $where = array(
-            'tipeuser' =>  $iduser,
+            'id_level' =>  $iduser,
             'id_menu' => $delete
         );
 
@@ -92,7 +92,7 @@ class M_Setting extends CI_Model {
         );
 
         $where = array(
-            'tipeuser' =>  $iduser
+            'id_level' =>  $iduser
         );
 
         $this->db->where($where);                                                            
@@ -110,12 +110,10 @@ class M_Setting extends CI_Model {
         $this->db->select('*');
         $this->db->join('tb_menu', 'tb_menu.id_menu = tb_akses.id_menu');
         $where = array(
-            'tipeuser' => $ida
+            'tb_akses.id_level' => $ida
         );
         $query = $this->db->get_where('tb_akses', $where);
         return $query->result();
-
-        // return $this->db->get('tb_menu')->result();
     }
 
     function datauserlog(){
