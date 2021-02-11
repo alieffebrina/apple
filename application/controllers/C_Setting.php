@@ -122,4 +122,17 @@ class C_Setting extends CI_Controller{
             redirect('level');
         }
     }
+
+    function ubah(){
+         $upload = $this->M_Setting->upload();
+        if ($upload['result'] == "success"){
+
+        $this->M_Setting->update($upload);
+
+        $this->session->set_flashdata('message', '<div class="alert alert-success left-icon-alert" role="alert">
+                                                    <strong>Sukses!</strong> Berhasil Menambahkan Brand Baru.
+                                                </div>');
+        redirect('setting');
+    }
+    }
 }

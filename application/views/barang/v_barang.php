@@ -43,7 +43,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Varian</label>
                   <div class="col-sm-10">
-                    <select class="js-states form-control" id="js-states" name="varian">
+                    <select class="js-states form-control select2" id="js-states" name="varian">
                         <option value="">Pilih Varian</option>
                         <?php foreach ($varian as $varian) : ?>
                             <option value="<?= $varian->id_varian ?>"><?= $varian->varian.' - '.$varian->brand.' - '.$varian->kategori ?></option>

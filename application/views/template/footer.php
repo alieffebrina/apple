@@ -180,7 +180,7 @@ function toggle(source) {
       var d = document.getElementById('penghubung').value;
       var e = document.getElementById('texthuruf1').value;
       var f = document.getElementById('texthuruf2').value;
-      var g = document.getElementById('texthuruf2').value;
+      var g = document.getElementById('texthuruf3').value;
       if (a == "huruf"){
         var a = e;
       } 
@@ -190,10 +190,82 @@ function toggle(source) {
       if(c == "huruf"){
         var c = g;
       }
-      document.getElementById('final').value = 'username'+d+a+d+b+d+c;
+      if(c == ""){
+        document.getElementById('final').value = a+d+b;
+      } else {
+      document.getElementById('final').value = a+d+b+d+c;
+      }
     // var embuhhuba = document.getElementById('penghubung').value;
   // document.getElementById('final').value= a+b;
   }
+
+  $('#btnsimpantipeuser').click(function(){
+    var finalpenjualan =  document.getElementById('final').value; // Ketika tombol simpan di klik
+    document.getElementById('kode_penjualan').value = finalpenjualan;
+    $("#modalkodepenjualan .close").click();
+  })
+
+  function refunda(){
+    var refunda = document.getElementById('koderefund1').value;
+    if(refunda=='huruf'){
+    document.getElementById('textrefund1').style.visibility='visible';
+    // document.getElementById('texthuruf1').value = embuha;
+    } else {
+    document.getElementById('textrefund1').style.visibility='hidden';
+
+    }
+  }
+
+  function refundb(){
+    var refundb = document.getElementById('koderefund2').value;
+    if(refundb=='huruf'){
+    document.getElementById('textrefund2').style.visibility='visible';
+    } else {
+    document.getElementById('textrefund2').style.visibility='hidden';
+
+    }
+  }
+
+  function refundc(){
+    var refundc = document.getElementById('koderefund3').value;
+    if(refundc=='huruf'){
+    document.getElementById('textrefund3').style.visibility='visible';  
+    } else {
+    document.getElementById('textrefund3').style.visibility='hidden';   
+    }
+    // document.getElementById('texthuruf3').value=embuhtext3;
+  }
+  function hubrefund(){
+      var a = document.getElementById('koderefund1').value;
+      var b = document.getElementById('koderefund2').value;
+      var c = document.getElementById('koderefund3').value;
+      var d = document.getElementById('hubunganrefund').value;
+      var e = document.getElementById('textrefund1').value;
+      var f = document.getElementById('textrefund2').value;
+      var g = document.getElementById('textrefund3').value;
+      if (a == "huruf"){
+        var a = e;
+      } 
+      if (b == "huruf"){
+        var b = f;
+      } 
+      if(c == "huruf"){
+        var c = g;
+      }
+      if(c == ""){
+        document.getElementById('refundfin').value = a+d+b;
+      } else {
+      document.getElementById('refundfin').value = a+d+b+d+c;
+      }
+    // var embuhhuba = document.getElementById('penghubung').value;
+  // document.getElementById('final').value= a+b;
+  }
+
+  $('#btnsimpanrefund').click(function(){
+    var finalrefund =  document.getElementById('refundfin').value; // Ketika tombol simpan di klik
+    document.getElementById('kode_refund').value = finalrefund;
+    $("#modalkoderefund .close").click();
+  })
 </script>
   
 <script type="text/javascript">
@@ -235,6 +307,164 @@ function toggle(source) {
       rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
       return prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
     }
+  </script>
+  <script type="text/javascript">
+    $("#barangjual").change(function(){ // Ketika user mengganti atau memilih data provinsi
+    
+      $.ajax({
+        type: "POST", // Method pengiriman data bisa dengan GET atau POST
+        url: "<?php echo base_url("C_Penjualan/getbarang"); ?>", // Isi dengan url/path file php yang dituju
+        data: {id_barang : $("#barangjual").val()}, // data yang akan dikirim ke file yang dituju
+        dataType: "json",
+        beforeSend: function(e) {
+          if(e && e.overrideMimeType) {
+            e.overrideMimeType("application/json;charset=UTF-8");
+          }
+        },
+        success: function(response){ // Ketika proses pengiriman berhasil
+          // set isi dari combobox kota
+          // lalu munculkan kembali combobox kotanya
+          $("#imei").html(response.list_imei).show();
+          $("#stok").val(response.list_sisastok);
+          $("#namabarang").val(response.namabarang);
+          $("#hargajual").val(response.list_harga);
+        },
+        error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
+          alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error
+        },
+      });
+    });
+
+    function startCalculate(){
+    var interval=setInterval("Calculate()",10);
+
+  };
+
+
+  function Calculate(){
+      var a = document.getElementById('hargajual').value.replace(/[^0-9]/g,'');
+      var b = document.getElementById('qtt').value;
+      // var c = document.getElementById('diskon').value;
+      // document.getElementById('diskon').value = formatRupiah(rupiah) ;
+      diskon.addEventListener('keyup', function(e){
+      diskon.value = formatRupiah(this.value, 'Rp. ');
+
+      });
+      var diskonc = document.getElementById('diskon').value.replace(/[^0-9]/g,'');
+
+      // alert((a*b));
+      if (diskonc>(a*b)){
+        $("#diskon").css("border-color","#fc5d32");
+        $("#diskon").val("");
+        var bilangan = (a*b);
+      }else{
+
+        $("#diskon").css("border-color","");
+        var bilangan = (a*b)-diskonc;
+      }
+      var number_string = bilangan.toString(),
+        sisa  = number_string.length % 3,
+        rupiah  = number_string.substr(0, sisa),
+        ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+          
+      if (ribuan) {
+        separator = sisa ? '.' : '';
+        rupiah += separator + ribuan.join('.');
+      }
+
+      document.getElementById('subtotal').value = 'Rp. '+formatRupiah(rupiah) ;
+      document.getElementById('subtotalrupiah').value = bilangan ;   
+  };
+  
+
+  function stopCalc(){
+    clearInterval(interval);
+    // clearInterval(intervala);
+  };
+
+    $("#butsendpenjualan").click(function() {
+        if($("#imei").val()=='' && 2 < parseFloat($("#qtt").val()) ){
+            alert('stok tidak cukup');
+        } else {
+
+          if(parseFloat($('#stok').val())<parseFloat($("#qtt").val())){
+            alert('stok tidak cukup');
+          }else{
+            var newid=$('#tabelku tbody>tr:last').find('td:eq(0)').text();
+            // alert(newid);
+            if(newid!=''){
+              newid=parseInt(newid)+1;
+            }else{
+              newid=1;
+            }
+
+            var st = parseInt($("#subtotalrupiah").val());
+            if(document.getElementById('total').value!=''){
+              sumHsl=document.getElementById('total').value;
+            }else{
+              sumHsl=0;
+            };
+
+            $("#tabelku").append('<tr valign="top" id="'+newid+'">\n\
+              <td width="100px" >' + newid + '</td>\n\
+              <td width="100px" class="namabarang'+newid+'"><input type="text" name="id_barang[]" value="'+$("#barangjual").val()+'">' + $("#namabarang").val() + '</td>\n\
+              <td width="100px" class="imei'+newid+'"><input type="text" name="imei[]" value="'+$("#imei").val()+'">' + $("#imei").val() + '</td>\n\
+              <td width="100px" class="qtt'+newid+'"><input type="text" name="qtt[]" value="'+$("#qtt").val()+'">' + $("#qtt").val() + '</td>\n\
+              <td width="100px" class="hargajual'+newid+'"><input type="text" name="hargajual[]" value="'+$("#hargajual").val()+'">Rp. ' + formatRupiah($("#hargajual").val()) + '</td>\n\
+              <td width="100px" class="diskon'+newid+'"><input type="text" name="diskon[]" value="'+$("#diskon").val()+'">' + $("#diskon").val() + '</td>\n\
+              <td width="100px" class="subtotal'+newid+'"><input type="text" name="subtotal[]" value="'+$("#subtotal").val()+'">' + $("#subtotal").val() + '</td>\n\
+              <td width="100px"><a href="javascript:void(0);" class="remCF" data-id="'+st+'" ><input type="text" id="suba" value="'+st+'" class="aatd'+newid+'">\n\
+                <button type="button" class="btn btn-info btn-sm">\n\
+                  <i class="fa fa-times"></i></button></a></td>\n\ </tr>');
+
+
+            // var sumHsl = 0;
+            // for (t=0; t<newid; t++){
+              sumHsl = parseFloat(sumHsl)+parseFloat(st);
+
+            // }
+              var number_string = sumHsl.toString(),
+              sisa  = number_string.length % 3,
+              rupiah  = number_string.substr(0, sisa),
+              ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+              if (ribuan) {
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+              }
+              document.getElementById('totalrp').html = 'Rp. '+formatRupiah(rupiah);
+              document.getElementById('total').value =sumHsl;
+              
+              document.getElementById('subtotal').value = '';
+              document.getElementById('namabarang').value = '';
+              document.getElementById('imei').value = '';
+              document.getElementById('qtt').value = '';
+              document.getElementById('diskon').value = '';
+              document.getElementById('hargajual').value = '';
+
+              $("#diskon").css("border-color","");
+              return false;
+          }
+        }
+      });
+
+    $("#tabelku").on('click', '.remCF', function() {
+      // var rowid = $(this).attr('id');;
+      // var sta = parseInt($("#subtotalrupiah").val());
+      $(this).parent().parent().remove();
+      sumHasl =  document.getElementById('total').value;
+      var suba= $(this).parent().find('#suba').val();
+      sumHasl=sumHasl-suba;
+      var number_string = sumHasl.toString(),
+        sisa  = number_string.length % 3,
+        rupiah  = number_string.substr(0, sisa),
+        ribuan  = number_string.substr(sisa).match(/\d{3}/g);
+        if (ribuan) {
+          separator = sisa ? '.' : '';
+          rupiah += separator + ribuan.join('.');
+        }
+      document.getElementById('totalrp').value = 'Rp. '+formatRupiah(rupiah);
+      document.getElementById('total').value =sumHasl ;
+    });
   </script>
 </body>
 </html>

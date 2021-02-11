@@ -127,4 +127,50 @@ class M_Setting extends CI_Model {
         $query = $this->db->get_where('tb_userlog');
         return $query->result();
     }
+
+    function update($upload){
+        $user = array(
+            'nama_toko' => $this->input->post('nama_toko'),
+            'alamat' => $this->input->post('alamat'),
+            'email' => $this->input->post('email'),
+            'website' => $this->input->post('website'),
+            'telp' => $this->input->post('telp'),
+            'hp' => $this->input->post('hp'),
+            'instagram' => $this->input->post('instagram'),
+            'logo' => $upload['file']['file_name'],
+            'kode_penjualan' => $this->input->post('kode_penjualan'),
+            'kode_refund' => $this->input->post('kode_refund'),
+            'tgl_update' => date('Y-m-d'),
+            'id_user' => $this->session->userdata('id_user')
+        );
+
+        $where = array(
+            'id_setting' =>  '1'
+        );
+
+        $this->db->where($where);                                                            
+        $this->db->update('tb_setting',$user);  
+    }
+
+     public function upload(){
+        $file_name = $this->input->post('logo');
+        $path= FCPATH.'assets/images';
+        // echo $path;
+        $config['upload_path'] = $path;
+        $config['allowed_types'] = '*';
+        $config['max_size'] = '2048';
+        $config['remove_space'] = TRUE;
+        $config['width']= '3000';
+        $config['height']= '4000';
+        $this->load->library('upload', $config); // Load konfigurasi uploadnya
+        $this->upload->initialize($config);
+        if($this->upload->do_upload('logo')){ // Lakukan upload dan Cek jika proses upload berhasil
+           $return = array('result' => 'success', 'file' => $this->upload->data(), 'error' => '');
+            return $return;
+        } else{
+            $return = array('result' => 'failed', 'error' => $this->upload->display_errors());
+            return $return; 
+        }
+    
+    }
  }

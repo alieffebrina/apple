@@ -61,7 +61,7 @@ class M_Barang extends CI_Model {
             'part_number' => $this->input->post('part', true),
             'nama_barang' => $this->input->post('barang', true),
             'stokawal' => $this->input->post('awal', true),
-            'stoksisa' => '0',
+            'stoksisa' => $this->input->post('awal', true),
             'hargajual' => preg_replace("/[^0-9]/", "", $this->input->post('hargajual')),
             'hargapokok' =>preg_replace("/[^0-9]/", "", $this->input->post('hargapokok')),
             'id_user' => $this->session->userdata('id_user'),
@@ -85,6 +85,18 @@ class M_Barang extends CI_Model {
         );
         $this->db->where($where);
         $this->db->update('tb_barang',$data);
+    }
+
+     public function updateimei($idimei){
+        $data = array(
+            'stok' => '0',
+        );
+
+        $where = array(
+            'id_imei' =>  $idimei
+        );
+        $this->db->where($where);
+        $this->db->update('tb_imei',$data);
     }
 
     public function all(){

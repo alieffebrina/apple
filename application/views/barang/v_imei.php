@@ -90,7 +90,6 @@
               <div class="box-footer">
                 <a href="<?php echo site_url('barang'); ?>"><button type="button" class="btn btn-default">Kembali</button></a>
                 <button type="submit" class="btn btn-info" name="simpan" value="simpan">Simpan</button>
-                <button type="submit" class="btn btn-success" name="simpan" value="imei">Imei</button>
               </div>
               <!-- /.box-footer -->
             <?php echo form_close();?>

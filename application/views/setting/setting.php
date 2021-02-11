@@ -86,7 +86,14 @@
                     <input type="text" class="form-control" id="instagram" name="instagram" value="<?php echo $setting->instagram ?>">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Logo</label>
 
+                  <div class="col-sm-10">
+                    <img src="<?php echo base_url() ?>assets/images/<?php echo $setting->logo ?>" alt="User Image" width="180px" height="230px">
+                    <input type="file" class="demoInputBox" id="foto" name="logo" onchange="ValidateSize(this)" >
+                  </div>
+                </div>
                 <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Kode Barang</label>
 
@@ -108,7 +115,7 @@
                     <input type="text" class="form-control" id="kode_penjualan" name="kode_penjualan" value="<?php echo $setting->kode_penjualan ?>">
 
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-info btn-flat" id="setkode_penjualan">Set!</button>
+                      <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modalkodepenjualan">Set!</button>
                     </span>
                   </div>
                   </div>
@@ -122,7 +129,7 @@
                     <input type="text" class="form-control" id="kode_refund" name="kode_refund" value="<?php echo $setting->kode_refund ?>">
 
                     <span class="input-group-btn">
-                      <button type="button" class="btn btn-info btn-flat" id="setkode_refund">Set!</button>
+                      <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modalkoderefund">Set!</button>
                     </span>
                   </div>
                   </div>
@@ -147,3 +154,197 @@
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
+
+  <div class="modal fade" id="modalkodepenjualan">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Kode Penjualan</h4>
+      </div>
+      <div class="modal-body">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Format 1</label>
+                  <div class="col-sm-9">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <select class="form-control select2" id="kodeformat1" name="format1" class="btn btn-warning dropdown-toggle" onchange="embuh()">
+                      <option value=''>Pilih</option>
+                        <option value='huruf'>Huruf</option>
+                        <option value='tanggal'>Tanggal</option>
+                        <option value='no'>No Urut</option>
+                      </select>
+
+                    <input type="text" class="form-control" id="texthuruf1" name="texthuruf" style="visibility:hidden">
+                    </div>
+                    <!-- /btn-group -->
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Format 2</label>
+                  <div class="col-sm-9">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <select class="form-control select2" id="format2" name="kota" class="btn btn-warning dropdown-toggle" onchange="embuhb()">
+                      <option value=''>Pilih</option>
+                        <option value='huruf'>Huruf</option>
+                        <option value='tanggal'>Tanggal</option>
+                        <option value='no'>No Urut</option>
+                      </select>
+
+                    <input type="text" class="form-control" id="texthuruf2" name="texthuruf" style="visibility:hidden">
+                    </div>
+                    <!-- /btn-group -->
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Format 3</label>
+                  <div class="col-sm-9">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <select class="form-control select2" id="format3" name="kota" class="btn btn-warning dropdown-toggle"  onchange="embuhc()">
+                      <option value=''>Pilih</option>
+                        <option value='huruf'>Huruf</option>
+                        <option value='tanggal'>Tanggal</option>
+                        <option value='no'>No Urut</option>
+                      </select>
+
+                    <input type="text" class="form-control" id="texthuruf3" name="texthuruf" style="visibility:hidden">
+                    </div>
+                    <!-- /btn-group -->
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Penghubung</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" id="penghubung" name="penghubung" style="width: 100%;" onchange="embuhhub()">
+                      <option value=''>Pilih</option>
+                      <option value='-'>-</option>
+                      <option value='.'>.</option>
+                      <option value=''>Tanpa Penghubung</option>
+                    </select>
+
+                    <input type="hidden" class="form-control" id="a" name="a" style="visibility:hidden" >
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Final</label>
+                  <div class="col-sm-9">
+                    <div id ="kodefinal"></div>
+                    <input type="text" class="form-control" id="final" name="final" >
+                    <br>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnsimpantipeuser">Save changes</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+
+ <div class="modal fade" id="modalkoderefund">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title">Kode Penjualan</h4>
+      </div>
+      <div class="modal-body">
+              <div class="form-horizontal">
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Format 1</label>
+                  <div class="col-sm-9">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <select class="form-control select2" id="koderefund1" name="koderefund1" class="btn btn-warning dropdown-toggle" onchange="refunda()">
+                      <option value=''>Pilih</option>
+                        <option value='huruf'>Huruf</option>
+                        <option value='tanggal'>Tanggal</option>
+                        <option value='no'>No Urut</option>
+                      </select>
+
+                    <input type="text" class="form-control" id="textrefund1" name="textrefund1" style="visibility:hidden">
+                    </div>
+                    <!-- /btn-group -->
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Format 2</label>
+                  <div class="col-sm-9">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <select class="form-control select2" id="koderefund2" name="koderefund2" class="btn btn-warning dropdown-toggle" onchange="refundb()">
+                      <option value=''>Pilih</option>
+                        <option value='huruf'>Huruf</option>
+                        <option value='tanggal'>Tanggal</option>
+                        <option value='no'>No Urut</option>
+                      </select>
+
+                    <input type="text" class="form-control" id="textrefund2" name="textrefund2" style="visibility:hidden">
+                    </div>
+                    <!-- /btn-group -->
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Format 3</label>
+                  <div class="col-sm-9">
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <select class="form-control select2" id="koderefund3" name="koderefund3" class="btn btn-warning dropdown-toggle"  onchange="refundc()">
+                      <option value=''>Pilih</option>
+                        <option value='huruf'>Huruf</option>
+                        <option value='tanggal'>Tanggal</option>
+                        <option value='no'>No Urut</option>
+                      </select>
+
+                    <input type="text" class="form-control" id="textrefund3" name="textrefund3" style="visibility:hidden">
+                    </div>
+                    <!-- /btn-group -->
+                  </div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Penghubung</label>
+                  <div class="col-sm-9">
+                    <select class="form-control select2" id="hubunganrefund" name="hubunganrefund" style="width: 100%;" onchange="hubrefund()">
+                      <option value=''>Pilih</option>
+                      <option value='-'>-</option>
+                      <option value='.'>.</option>
+                      <option value=''>Tanpa Penghubung</option>
+                    </select>
+
+                    <input type="hidden" class="form-control" id="a" name="a" style="visibility:hidden" >
+                  </div>
+                </div> 
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Kode Final</label>
+                  <div class="col-sm-9">
+                    <div id ="kodefinal"></div>
+                    <input type="text" class="form-control" id="refundfin" name="refundfin" >
+                    <br>
+                  </div>
+                </div>
+              </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="btnsimpanrefund">Save changes</button>
+      </div>
+    </div>
+    <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
