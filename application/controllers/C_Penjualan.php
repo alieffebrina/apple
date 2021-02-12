@@ -195,8 +195,6 @@ class C_Penjualan extends CI_Controller{
             }
 
             $this->M_Penjualan->tambahdata($hargatotal);
-
-
             $where = array('status' => '0');
             $this->M_Setting->delete($where,'tb_detailsementara');
 

@@ -91,3 +91,13 @@ $route['akses'] = 'C_Setting';
 $route['akses-edit/(:any)'] = 'C_Setting/edit/$1';
 
 $route['setting'] = 'C_Setting';
+
+
+$route['refund'] = 'C_Refund';
+$route['refund-add/(:any)'] = 'C_Refund/add/$1';
+$route['refund-detail/(:any)'] = 'C_Refund/view/$1';
+$route['refund-cek'] = 'C_Refund/cek';
+
+$route['kasumum'] = 'C_Kas/kasumum';
+$route['kasmasuk'] = 'C_Kas/kasmasuk';
+$route['kaskeluar'] = 'C_Kas/kaskeluar';

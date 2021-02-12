@@ -15,7 +15,8 @@ class M_Brand extends CI_Model {
     	$data = array(
                     'brand' => $this->input->post('brand', true),
                     'id_user' => $this->session->userdata('id_user'),
-                    'tgl_update' => date("Y-m-d")
+                    'tgl_update' => date("Y-m-d"),
+                    'id_user' => $this->session->userdata('id_user'),
                 );
     
     	$this->db->insert('tb_brand', $data);

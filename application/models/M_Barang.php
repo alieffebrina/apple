@@ -99,6 +99,18 @@ class M_Barang extends CI_Model {
         $this->db->update('tb_imei',$data);
     }
 
+    public function tambahstokimei($idimei){
+        $data = array(
+            'stok' => '1',
+        );
+
+        $where = array(
+            'id_imei' =>  $idimei
+        );
+        $this->db->where($where);
+        $this->db->update('tb_imei',$data);
+    }
+
     public function all(){
         $this->db->join('tb_varian', 'tb_varian.id_varian = tb_barang.id_varian');
         $this->db->join('tb_brand', 'tb_brand.id_brand = tb_varian.id_brand');

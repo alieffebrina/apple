@@ -61,9 +61,12 @@
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.pie.js"></script>
 <!-- FLOT CATEGORIES PLUGIN - Used to draw bar charts -->
 <script src="<?php echo base_url() ?>assets/bower_components/Flot/jquery.flot.categories.js"></script>
+<!-- Select2 -->
+<script src="<?php echo base_url() ?>assets/bower_components/select2/dist/js/select2.full.min.js"></script>
 <!-- Page script -->
 <script>
   $(document).ready(function(){ 
+    $('.select2').select2()
     $('#example1').DataTable();
     $('#example2').DataTable({
       'paging'      : true,
@@ -290,6 +293,13 @@ function toggle(source) {
         hargapokok.value = formatRupiah(this.value, 'Rp. ');
       });
     }
+
+    var nominalrefund = document.getElementById('nominalrefund');
+    if(nominalrefund){
+      nominalrefund.addEventListener('keyup', function(e){
+        nominalrefund.value = formatRupiah(this.value, 'Rp. ');
+      });
+    }
     /* Fungsi formatRupiah */
     function formatRupiah(angka, prefix){
       var number_string = angka.toString().replace(/[^,\d]/g, ''),
@@ -309,6 +319,24 @@ function toggle(source) {
     }
   </script>
   <script type="text/javascript">
+    $("#jenisrefund").change(function(){
+      var jenis = $("#jenisrefund").val();
+      if (jenis == "uang") { 
+         document.getElementById('nominalrefund').style.visibility='visible';
+         // document.getElementById('qttrefund').style.visibility='visible';
+         // document.getElementById('hargarefund').style.visibility='visible';
+      } else if (jenis == "barang") { 
+         document.getElementById('nominalrefund').style.visibility='hidden';
+         // document.getElementById('qttrefund').style.visibility='visible';
+         // document.getElementById('hargarefund').style.visibility='visible';
+      } else {
+
+         document.getElementById('nominalrefund').style.visibility='hidden';
+         // document.getElementById('qttrefund').style.visibility='visible';
+         // document.getElementById('hargarefund').style.visibility='visible';
+      }
+    });
+
     $("#barangjual").change(function(){ // Ketika user mengganti atau memilih data provinsi
     
       $.ajax({

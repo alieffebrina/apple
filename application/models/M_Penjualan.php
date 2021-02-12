@@ -16,10 +16,23 @@ class M_Penjualan extends CI_Model {
             'jenistransaksi' => $this->input->post('jenistransaksi'),
             'garansi' => $this->input->post('garansi'),
             'tgl_update'=> date('Y-m-d'),
+            'id_user' => $this->session->userdata('id_user'),
             'hargatotal' => $hargatotal,
         );
         // echo'<pre>';print_r($penjualan);exit;
         $this->db->insert('tb_transaksi', $penjualan);
+
+        $kas = array(
+            'jeniskas' => 'kas masuk',
+            'kode' => $this->input->post('kode_penjualan'),
+            'keterangan' => 'Transaksi Penjualan',
+            'tgl_update' => date('Y-m-d'),
+            'nominal' => $hargatotal,
+            'id_user' => $this->session->userdata('id_user'),
+        );
+
+
+        $this->db->insert('tb_kas', $kas);
     }
 
     function transaksisementara(){
@@ -44,6 +57,19 @@ class M_Penjualan extends CI_Model {
     function all(){
         $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
         return $this->db->get('tb_transaksi')->result();
+    }
+
+    function alldetail($kode_transaksi){
+        $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
+        $this->db->where('kode_transaksi',$kode_transaksi);
+        return $this->db->get('tb_transaksi')->result();
+    }
+
+     function detail($kode_transaksi){
+        $this->db->select('tb_barang.id_barang barangkode, tb_detailtransaksi.*, tb_barang.nama_barang');
+        $this->db->join('tb_barang', 'tb_barang.id_barang = tb_detailtransaksi.id_barang');
+        $this->db->where('kode_transaksi',$kode_transaksi);
+        return $this->db->get('tb_detailtransaksi')->result();
     }
 
     function count(){
