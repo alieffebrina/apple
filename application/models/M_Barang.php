@@ -132,5 +132,34 @@ class M_Barang extends CI_Model {
         $this->db->select_max('id_barang');
         return $this->db->get('tb_barang')->result();
     }
+
+    function historystok($barang,$qtt, $sisa){
+        $stok = array(
+            'id_barang' => $barang,
+            'kodetransaksi' => $this->input->post('kode_penjualan'),
+            'keterangan' => 'Transaksi Penjualan',
+            'tgl_update' => date('Y-m-d'),
+            'stokberubah' => $qtt,
+            'stoksisa' => $sisa,
+            'id_user' => $this->session->userdata('id_user'),
+        );
+
+
+        $this->db->insert('tb_historystok', $stok);
+    }
+
+    public function history(){
+        $this->db->select('tb_barang.nama_barang, tb_varian.varian, tb_historystok.*');
+        $this->db->join('tb_barang', 'tb_barang.id_barang = tb_historystok.id_barang');
+        $this->db->join('tb_varian', 'tb_varian.id_varian = tb_barang.id_varian');
+        $this->db->join('tb_brand', 'tb_brand.id_brand = tb_varian.id_brand');
+        $this->db->join('tb_kategori', 'tb_kategori.id_kategori = tb_varian.id_kategori');
+        if(!empty($this->input->post('barang'))){
+            $this->db->where('tb_historystok.id_barang', $this->input->post('barang'));
+        }
+
+        return $this->db->get('tb_historystok')->result();
+
+    }  
 }
     

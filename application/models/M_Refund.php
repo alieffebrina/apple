@@ -63,7 +63,7 @@ class M_Refund extends CI_Model {
 
     function kasrefund($nominalrefund){
         $kas = array(
-            'jeniskas' => 'kas keluar',
+            'jeniskas' => 'keluar',
             'kode' => $this->input->post('koderefund'),
             'keterangan' => 'Transaksi Refund',
             'tgl_update' => date('Y-m-d'),

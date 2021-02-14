@@ -23,7 +23,7 @@ class M_Penjualan extends CI_Model {
         $this->db->insert('tb_transaksi', $penjualan);
 
         $kas = array(
-            'jeniskas' => 'kas masuk',
+            'jeniskas' => 'masuk',
             'kode' => $this->input->post('kode_penjualan'),
             'keterangan' => 'Transaksi Penjualan',
             'tgl_update' => date('Y-m-d'),
@@ -55,6 +55,8 @@ class M_Penjualan extends CI_Model {
 
 
     function all(){
+        $this->db->order_by('tb_transaksi.tgl_update', 'ASC');
+        $this->db->select('tb_ekspedisi.ekspedisi, tb_transaksi.*');
         $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
         return $this->db->get('tb_transaksi')->result();
     }
@@ -74,6 +76,47 @@ class M_Penjualan extends CI_Model {
 
     function count(){
         $this->db->where('month(tgl_update)', date('m'));
+        return $this->db->get('tb_transaksi')->result();
+    }
+
+    function tanggal(){
+        $tgl = $this->input->post('tgl');
+        if(isset($tgl) && !empty($tgl)){
+            $tgl=explode(' - ', $tgl);
+            $tgl_mulai=explode('.', $tgl[0]);
+            $tgl_sampai=explode('.', $tgl[1]);
+        }
+
+        $this->db->select('tb_ekspedisi.ekspedisi, tb_transaksi.*');
+        $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
+        if(!empty($tgl[0]) && !empty($tgl[1])){
+            $this->db->where("tb_transaksi.tgl_update BETWEEN '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'");
+        }
+
+        if(!empty($this->input->post('user'))){
+            $this->db->where('tb_transaksi.id_user',$this->input->post('user'));
+        }
+
+        return $this->db->get('tb_transaksi')->result();
+    }
+
+    function excel($tgl, $user){
+        if(isset($tgl) && !empty($tgl)){
+            $tgl=explode('%20-%20', $tgl);
+            $tgl_mulai=explode('.', $tgl[0]);
+            $tgl_sampai=explode('.', $tgl[1]);
+        }
+
+        $this->db->select('tb_ekspedisi.ekspedisi, tb_transaksi.*');
+        $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
+        if(!empty($tgl[0]) && !empty($tgl[1])){
+            $this->db->where("tb_transaksi.tgl_update BETWEEN '".($tgl_mulai[2]."-".$tgl_mulai[1]."-".$tgl_mulai[0])."' and '".($tgl_sampai[2]."-".$tgl_sampai[1]."-".$tgl_sampai[0])."'");
+        }
+
+        if($user != '0'){
+            $this->db->where('tb_transaksi.id_user',$user);
+        }
+
         return $this->db->get('tb_transaksi')->result();
     }
 
@@ -112,6 +155,7 @@ class M_Penjualan extends CI_Model {
         );
         // echo'<pre>';print_r($penjualan);exit;
         $this->db->insert('tb_detailsementara', $penjualan);
+
     }
 
     function detailsementara(){

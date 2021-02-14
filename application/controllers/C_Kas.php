@@ -179,4 +179,72 @@ class C_Kas extends CI_Controller{
                                                 </div>');
         redirect('kasumum');
     }
+
+     function index()
+    {
+            $tgl =  $this->input->post('tgl');
+            $user =  $this->input->post('user');
+        if($this->input->post('excel') == false){
+            $data['activeMenu'] = 'Laporan Kas';
+            $this->load->view('template/header.php', $data);
+            $id = $this->session->userdata('level');
+            $this->load->view('template/sidebar.php', $data);
+            $tabel = 'tb_akses';
+            $add = array(
+                'id_level' => $id,
+                'add' => '1',
+                'id_menu' => '7'
+            );
+            $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+            if(count($hasiladd)!=0){ 
+                $tomboladd = 'aktif';
+            } else {
+                $tomboladd = 'tidak';
+            }
+            
+            $edit = array(
+                'id_level' => $id,
+                'edit' => '1',
+                'id_menu' => '7'
+            );
+            $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+            if(count($hasiledit)!=0){ 
+                $tomboledit = 'aktif';
+            } else {
+                $tomboledit = 'tidak';
+            }
+
+            $hapus = array(
+                'id_level' => $id,
+                'delete' => '1',
+                'id_menu' => '7'
+            );
+            $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+            if(count($hasilhapus)!=0){ 
+                $tombolhapus = 'aktif';
+            } else {
+                $tombolhapus = 'tidak';
+            }
+            $data['aksestambah'] = $tomboladd;
+            $data['akseshapus'] = $tombolhapus;
+            $data['aksesedit'] = $tomboledit;
+            $data['kas'] = $this->M_Kas->tanggal(); 
+            $data['user'] = $this->db->get('tb_user')->result();   
+            $this->load->view('kas/v_laporan',$data); 
+            $this->load->view('template/footer');
+        } else {
+            if(empty($user)){
+                $user = '0';
+            }
+            redirect('C_Kas/excel/'.$tgl.'/'.$user);
+        }
+    }
+
+    function excel($tgl, $user){
+        // echo $tgl;
+        $transaksi = $this->M_Kas->excel($tgl, $user); 
+        $data = array('title' => 'Laporan Kas',
+                'excel' => $transaksi);
+        $this->load->view('kas/excelkas', $data);
+    }
 }

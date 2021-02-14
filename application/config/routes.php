@@ -79,6 +79,7 @@ $route['ekspedisi-edit/(:any)'] = 'C_Ekspedisi/edit/$1';
 $route['transaksi'] = 'C_Penjualan';
 $route['transaksi-add/(:any)'] = 'C_Penjualan/add/$1';
 $route['transaksi-detail/(:any)'] = 'C_Penjualan/view/$1';
+$route['penjualan'] = 'C_Penjualan/penjualan';
 
 $route['level'] = 'C_Level';
 $route['level-edit/(:any)'] = 'C_Level/edit/$1';
@@ -101,3 +102,6 @@ $route['refund-cek'] = 'C_Refund/cek';
 $route['kasumum'] = 'C_Kas/kasumum';
 $route['kasmasuk'] = 'C_Kas/kasmasuk';
 $route['kaskeluar'] = 'C_Kas/kaskeluar';
+$route['Kas'] = 'C_Kas';
+
+$route['stok'] = 'C_Stok';

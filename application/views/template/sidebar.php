@@ -33,6 +33,11 @@
             <?php } ?>
         </ul>
         </li>
+
+        <?php $query = $this->db->query("SELECT * FROM tb_akses where id_menu = '20' and view = '1' and id_level = $id")->num_rows(); 
+        if($query != 0){ ?>
+          <li><a href="<?php echo site_url('stok'); ?> "><i class="fa fa-book"></i> <span>Stok Opname</span></a></li>
+        <?php } ?>
         <?php $query = $this->db->query("SELECT * FROM tb_akses where id_menu = '17' and view = '1' and id_level = $id")->num_rows(); 
         if($query != 0){ ?>
           <li><a href="<?php echo site_url('transaksi'); ?> "><i class="fa fa-book"></i> <span>Transaksi Penjualan</span></a></li>

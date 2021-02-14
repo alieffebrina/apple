@@ -59,7 +59,7 @@ class C_Penjualan extends CI_Controller{
         $data['aksestambah'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['transaksi'] = $this->M_Penjualan->all();   
+            $data['transaksi'] = $this->M_Penjualan->all(); 
         $this->load->view('penjualan/v_penjualan',$data); 
         $this->load->view('template/footer');
     }
@@ -192,6 +192,8 @@ class C_Penjualan extends CI_Controller{
 
                 $this->M_Barang->updatestok($data->id_barang, $sisa);
 
+                $this->M_Barang->historystok($data->id_barang, $data->qtt, $sisa);
+
             }
 
             $this->M_Penjualan->tambahdata($hargatotal);
@@ -214,6 +216,75 @@ class C_Penjualan extends CI_Controller{
                                                     <strong>Sukses!</strong> Berhasil Menghapus Transaksi.
                                                 </div>');
         redirect('transaksi-add/'.$kode);
+    }
+
+     function penjualan()
+    {
+            $tgl =  $this->input->post('tgl');
+            $user =  $this->input->post('user');
+        if($this->input->post('excel') == false){
+            $data['activeMenu'] = 'Laporan Penjualan';
+            $this->load->view('template/header.php', $data);
+            $id = $this->session->userdata('level');
+            $this->load->view('template/sidebar.php', $data);
+            $tabel = 'tb_akses';
+            $add = array(
+                'id_level' => $id,
+                'add' => '1',
+                'id_menu' => '10'
+            );
+            $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+            if(count($hasiladd)!=0){ 
+                $tomboladd = 'aktif';
+            } else {
+                $tomboladd = 'tidak';
+            }
+            
+            $edit = array(
+                'id_level' => $id,
+                'edit' => '1',
+                'id_menu' => '10'
+            );
+            $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+            if(count($hasiledit)!=0){ 
+                $tomboledit = 'aktif';
+            } else {
+                $tomboledit = 'tidak';
+            }
+
+            $hapus = array(
+                'id_level' => $id,
+                'delete' => '1',
+                'id_menu' => '10'
+            );
+            $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+            if(count($hasilhapus)!=0){ 
+                $tombolhapus = 'aktif';
+            } else {
+                $tombolhapus = 'tidak';
+            }
+            $data['aksestambah'] = $tomboladd;
+            $data['akseshapus'] = $tombolhapus;
+            $data['aksesedit'] = $tomboledit;
+            $data['transaksi'] = $this->M_Penjualan->tanggal(); 
+            $data['user'] = $this->db->get('tb_user')->result();   
+            $data['tgl'] = $tgl;
+            $this->load->view('penjualan/v_laporan',$data); 
+            $this->load->view('template/footer');
+        } else {
+            if(empty($user)){
+                $user = '0';
+            }
+            redirect('C_penjualan/excel/'.$tgl.'/'.$user);
+        }
+    }
+
+    function excel($tgl, $user){
+        // echo $tgl;
+        $transaksi = $this->M_Penjualan->excel($tgl, $user); 
+        $data = array('title' => 'Laporan Penjualan',
+                'excel' => $transaksi);
+        $this->load->view('penjualan/excelpenjualan', $data);
     }
 
 }
