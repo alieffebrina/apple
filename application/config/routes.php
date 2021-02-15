@@ -69,6 +69,7 @@ $route['barang'] = 'C_Barang';
 $route['imei/(:any)'] = 'C_Barang/imei/$1';
 $route['barang-edit/(:any)'] = 'C_Barang/edit/$1';
 $route['barang-detail/(:any)'] = 'C_Barang/detail/$1';
+$route['stokbarang'] = 'C_Barang/laporan';
 
 $route['marketplace'] = 'C_Marketplace';
 $route['marketplace-edit/(:any)'] = 'C_Marketplace/edit/$1';
@@ -105,3 +106,7 @@ $route['kaskeluar'] = 'C_Kas/kaskeluar';
 $route['Kas'] = 'C_Kas';
 
 $route['stok'] = 'C_Stok';
+$route['SO/(:any)'] = 'C_Stok/SO/$1';
+
+
+$route['labarugi'] = 'C_Labarugi';

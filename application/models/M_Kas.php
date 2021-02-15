@@ -50,5 +50,15 @@ class M_Kas extends CI_Model {
 
         return $this->db->get('tb_kas')->result();
     }
+
+    function totalkasmasuk(){
+        $this->db->where('jeniskas', 'masuk');
+        return $this->db->get('tb_kas')->result();
+    }
+
+    function totalkaskeluar(){
+        $this->db->where('jeniskas', 'keluar');
+        return $this->db->get('tb_kas')->result();
+    }
     
 }

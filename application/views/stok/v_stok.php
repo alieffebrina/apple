@@ -43,6 +43,9 @@
                     <div class="col-sm-3">
                       <button type="submit" name="btn_submit" class="btn btn-primary">Tampilkan</button>
                       <button type="submit" name="excel" id="btn_print" value="excel" class="btn btn-warning">Cetak Excel</button>
+                      <?php if($aksesedit == 'aktif'){ ?>
+                      <button type="submit" name="so" id="btn_print" value="so" class="btn btn-success"> Stok Opname</button>
+                    <?php } ?>
                     </div>
                   </div>
                 </div>
@@ -59,33 +62,32 @@
             <!-- /.box-header -->
 
             <div class="box-body">
-              
-
-              <table id="example2" class="table table-bordered table-striped">
+              <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
+                  <th>No</th>
                   <th>Tanggal Transaksi</th>
                   <th>Kode Transaksi</th>
                   <th>Nama Barang</th>
                   <th>Qtt</th>
                   <th>Stok saat ini</th>
                   <th>Keterangan</th>
-                  <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
                   <?php 
-                  $no=1;
+                  $no =1;
                   foreach ($historystok as $key) { ?>
                     <tr>
+                      <td><?php echo $no++ ?></td>
                       <td><?php echo date('d-m-Y', strtotime($key->tgl_update)) ?></td>
                       <td><?php echo $key->kodetransaksi ?></td>
                       <td><?php echo $key->nama_barang.'-'.$key->varian ?></td>
                       <td><?php echo $key->stokberubah ?></td>
                       <td><?php echo $key->stoksisa ?></td>
-                      <td><?php echo $key->keterangan ?></td>                  
+                      <td><?php echo $key->keterangan ?></td>                 
                     </tr>
-                  <?php } ?>
+                <?php } ?>
                 </tbody>
               </table>
             </div>

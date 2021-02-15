@@ -124,14 +124,62 @@ class C_Refund extends CI_Controller{
                 if($imei != 0){
                     $this->M_Barang->tambahstokimei($imei);
                 }
+
+                $stok = array(
+                    'id_barang' => $barang,
+                    'kodetransaksi' => $this->input->post('koderefund'),
+                    'keterangan' => 'Transaksi Refund',
+                    'tgl_update' => date('Y-m-d'),
+                    'stokberubah' => $qtt,
+                    'stoksisa' => $stoksisa,
+                    'id_user' => $this->session->userdata('id_user'),
+                );
+                $this->db->insert('tb_historystok', $stok);
             } 
             $this->M_Refund->kasrefund($nominalrefund);
         } else {
             $nominalrefund = $this->input->post('hargatotal');
+
+            $etransaksi = $this->M_Penjualan->detail($this->input->post('kode_transaksi')); 
+            foreach ($etransaksi as $key) {
+                $barang = $key->id_barang;
+                $imei = $key->id_imei;
+                $qtt = $key->qtt;
+                $barangdet = $this->M_Barang->getdetail($barang);
+                foreach ($barangdet as $barangdet) {
+                    $stokawal = $barangdet->stoksisa;
+                }
+                $stoksisa = $qtt + $stokawal;
+
+                
+
+                $stoka = array(
+                    'id_barang' => $barang,
+                    'kodetransaksi' => $this->input->post('koderefund'),
+                    'keterangan' => 'Transaksi Refund',
+                    'tgl_update' => date('Y-m-d'),
+                    'stokberubah' => $qtt,
+                    'stoksisa' => $stoksisa,
+                    'id_user' => $this->session->userdata('id_user'),
+                );
+                $this->db->insert('tb_historystok', $stoka);
+
+                $stok = array(
+                    'id_barang' => $barang,
+                    'kodetransaksi' => $this->input->post('koderefund'),
+                    'keterangan' => 'Pengembalian Stok Transaksi Refund',
+                    'tgl_update' => date('Y-m-d'),
+                    'stokberubah' => $qtt,
+                    'stoksisa' => $stokawal,
+                    'id_user' => $this->session->userdata('id_user'),
+                );
+                $this->db->insert('tb_historystok', $stok);
+            }
         }
 
          
             $this->M_Refund->insert($nominalrefund);
+
             $this->session->set_flashdata('message', '<div class="alert alert-success left-icon-alert" role="alert">
                                                         <strong>Sukses!</strong> Refund Berhasil Dilakukan.
                                                     </div>');

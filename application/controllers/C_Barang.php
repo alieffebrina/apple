@@ -177,6 +177,8 @@ class C_Barang extends CI_Controller{
 
         $stok = $this->M_Barang->selectcount($idbarang);
         $this->M_Barang->updatestok($idbarang, $stok);
+
+        $this->M_Barang->updatehistoryso($idbarang,'1', $stok,'Hapus Imei');
                 
         $this->session->set_flashdata('message', '<div class="alert alert-success left-icon-alert" role="alert">
                                                     <strong>Sukses!</strong> Berhasil Menghapus Imei.
@@ -220,6 +222,57 @@ class C_Barang extends CI_Controller{
         $data['barang'] = $this->M_Barang->getdetail($idbarang); 
         $data['imei'] = $this->db->get_where('tb_imei', ['id_barang' => $idbarang])->result();
         $this->load->view('barang/v_detail',$data); 
+        $this->load->view('template/footer');
+    }
+
+    function laporan()
+    {
+        $data['activeMenu'] = 'barang';
+        $this->load->view('template/header.php', $data);
+        $id = $this->session->userdata('level');
+        $this->load->view('template/sidebar.php', $data);
+        $data['barang'] = $this->M_Barang->all();   
+        $tabel = 'tb_akses';
+        $add = array(
+            'id_level' => $id,
+            'add' => '1',
+            'id_menu' => '4'
+        );
+        $hasiladd = $this->M_Setting->cekakses($tabel, $add);
+        if(count($hasiladd)!=0){ 
+            $tomboladd = 'aktif';
+        } else {
+            $tomboladd = 'tidak';
+        }
+        
+        $edit = array(
+            'id_level' => $id,
+            'edit' => '1',
+            'id_menu' => '4'
+        );
+        $hasiledit = $this->M_Setting->cekakses($tabel, $edit);
+        if(count($hasiledit)!=0){ 
+            $tomboledit = 'aktif';
+        } else {
+            $tomboledit = 'tidak';
+        }
+
+        $hapus = array(
+            'id_level' => $id,
+            'delete' => '1',
+            'id_menu' => '4'
+        );
+        $hasilhapus = $this->M_Setting->cekakses($tabel, $hapus);
+        if(count($hasilhapus)!=0){ 
+            $tombolhapus = 'aktif';
+        } else {
+            $tombolhapus = 'tidak';
+        }
+        $data['aksestambah'] = $tomboladd;
+        $data['akseshapus'] = $tombolhapus;
+        $data['aksesedit'] = $tomboledit;
+        $data['varian'] = $this->M_Varian->all(); 
+        $this->load->view('barang/v_laporan',$data); 
         $this->load->view('template/footer');
     }
 
