@@ -3,13 +3,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Transaksi Refund
+        Transaksi Penjualan
         <small>data</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Transaksi Refund</a></li>
-        <li class="active">Data Transaksi Refund</li>
+        <li><a href="#">Transaksi Penjualan</a></li>
+        <li class="active">Data Transaksi Penjualan</li>
       </ol>
     </section>
 
@@ -26,11 +26,11 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Data Transaksi Refund</h3>
+              <h3 class="box-title">Data Transaksi Penjualan</h3>
             </div>
           <?php if($aksestambah == 'aktif'){?>
             <div class="box-header">
-            <a href="<?php echo site_url('refund-add/0'); ?>"><button type="button" class="btn btn-success" data-placement="bottom" title="Tambah Transaksi!"><i class="fa fa-fw fa-plus"></i></button></a>
+            <a href="<?php echo site_url('Penjualan-add/0'); ?>"><button type="button" class="btn btn-success" data-placement="bottom" title="Tambah Transaksi!"><i class="fa fa-fw fa-plus"></i></button></a>
             </div>
           <?php } ?>
             <!-- /.box-header -->
