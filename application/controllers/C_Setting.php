@@ -59,7 +59,7 @@ class C_Setting extends CI_Controller{
         $data['aksestambah'] = $tomboladd;
         $data['akseshapus'] = $tombolhapus;
         $data['aksesedit'] = $tomboledit;
-        $data['setting'] = $this->db->get_where('tb_setting', ['id_setting' => '1'])->result();;
+        $data['setting'] = $this->db->get_where('tb_setting', ['id_setting' => '1'])->result();
         $this->load->view('setting/setting',$data); 
         $this->load->view('template/footer');
     }

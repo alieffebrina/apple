@@ -62,6 +62,7 @@
                         <div class="btn-group">
 
                             <a href="<?php echo site_url('transaksi-detail/'.$transaksi->kode_transaksi); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
+                            <a href="<?php echo site_url('C_Penjualan/print/'.$transaksi->kode_transaksi); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
                         </div>
                       </td>
                     </tr>  

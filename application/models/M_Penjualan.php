@@ -62,8 +62,9 @@ class M_Penjualan extends CI_Model {
     }
 
     function alldetail($kode_transaksi){
+        $this->db->select('tb_ekspedisi.ekspedisi ekspedisi, tb_transaksi.*');
         $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
-        $this->db->where('kode_transaksi',$kode_transaksi);
+        $this->db->where('tb_transaksi.kode_transaksi',$kode_transaksi);
         return $this->db->get('tb_transaksi')->result();
     }
 
@@ -164,6 +165,7 @@ class M_Penjualan extends CI_Model {
     }
 
     function view($kodepenjualan){
+        $this->db->select('tb_ekspedisi.ekspedisi, tb_transaksi.*');
         $this->db->join('tb_ekspedisi', 'tb_ekspedisi.id_ekspedisi = tb_transaksi.id_ekspedisi');
         $this->db->where('tb_transaksi.kode_transaksi',$kodepenjualan);
         return $this->db->get('tb_transaksi')->result();

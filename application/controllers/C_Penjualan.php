@@ -287,4 +287,16 @@ class C_Penjualan extends CI_Controller{
         $this->load->view('penjualan/excelpenjualan', $data);
     }
 
+    function print($kodepenjualan){
+        $data['setting'] = $this->db->get_where('tb_setting', ['id_setting' => '1'])->result();
+        $data['cek'] = $this->db->get_where('tb_transaksi', ['id_transaksi' => $kodepenjualan])->result();
+        // $data['cek'] = $this->M_Penjualan->view($kodepenjualan);
+        $data['viewdetail'] = $this->M_Penjualan->viewdetail($kodepenjualan);
+        $this->load->view('penjualan/v_printpenjualan', $data);
+
+        // foreach ($transaksi as $key) {
+        //     echo $key->alamatc;
+        // }
+    }
+
 }
