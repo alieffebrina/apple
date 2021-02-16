@@ -58,6 +58,7 @@
                         <div class="btn-group">
 
                             <a href="<?php echo site_url('refund-detail/'.$transaksi->id_refund); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
+                            <a href="<?php echo site_url('C_Refund/print/'.$transaksi->id_refund); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-print"></i></button></a>
                         </div>
                       </td>
                     </tr>  

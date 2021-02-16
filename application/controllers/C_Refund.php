@@ -199,4 +199,15 @@ class C_Refund extends CI_Controller{
         $this->load->view('refund/v_vrefund',$data); 
         $this->load->view('template/footer');
     }
+
+    function print($kode){
+        $data['setting'] = $this->db->get_where('tb_setting', ['id_setting' => '1'])->result();
+        $data['refund'] = $this->M_Refund->detail($kode);   
+        $data['detail'] = $this->M_Refund->datadetail($kode);  
+        $this->load->view('refund/v_print', $data);
+
+        // foreach ($transaksi as $key) {
+        //     echo $key->alamatc;
+        // }
+    }
 }

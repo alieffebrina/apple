@@ -30,7 +30,7 @@
             </div>
           <?php if($aksestambah == 'aktif'){?>
             <div class="box-header">
-            <a href="<?php echo site_url('Penjualan-add/0'); ?>"><button type="button" class="btn btn-success" data-placement="bottom" title="Tambah Transaksi!"><i class="fa fa-fw fa-plus"></i></button></a>
+            <a href="<?php echo site_url('transaksi-add/0'); ?>"><button type="button" class="btn btn-success" data-placement="bottom" title="Tambah Transaksi!"><i class="fa fa-fw fa-plus"></i></button></a>
             </div>
           <?php } ?>
             <!-- /.box-header -->
@@ -62,7 +62,7 @@
                         <div class="btn-group">
 
                             <a href="<?php echo site_url('transaksi-detail/'.$transaksi->kode_transaksi); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
-                            <a href="<?php echo site_url('C_Penjualan/print/'.$transaksi->kode_transaksi); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
+                            <a href="<?php echo site_url('C_Penjualan/print/'.$transaksi->kode_transaksi); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-print"></i></button></a>
                         </div>
                       </td>
                     </tr>  

@@ -64,15 +64,15 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Jual</label>
-                  <div class="col-sm-10">
-                    <input type="text" class="form-control" id="hargajual" name="hargajual" placeholder="Harga Jual">
-                  </div>
-                </div>
-                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Harga Pokok</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="hargapokok" name="hargapokok" placeholder="Harga Pokok">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Jual</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="hargajual" name="hargajual" placeholder="Harga Jual">
                   </div>
                 </div>
               </div>

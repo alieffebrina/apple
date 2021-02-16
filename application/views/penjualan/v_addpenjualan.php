@@ -146,7 +146,7 @@
                   <label for="inputEmail3" class="col-sm-3 control-label">Stok Awal</label>
                   <div class="col-sm-9">
                     <input type="text" class="form-control" id="stok" name="stok" readonly>
-                    <input type="text" class="form-control" id="namabarang" name="namabarang" readonly>
+                    <input type="hidden" class="form-control" id="namabarang" name="namabarang" readonly>
                   </div>
                 </div>
                 <div class="form-group">
@@ -258,6 +258,7 @@
               </div>
               <input type="hidden" class="form-control" id="total" name="total" value="<?php echo $tot ?>">
               <button class="btn btn-success pull-right" type="submit" value="simpantotal" name="simpantotal">Simpan</button>
+              <button class="btn btn-primary" type="submit" value="simpanprint" name="simpanprint">Simpan & Print</button>
 
           </div>
         </form>

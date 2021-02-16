@@ -27,7 +27,7 @@
                 <div class='row'>
                     <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Tanggal</label>
-                      <div class="col-sm-7">
+                      <div class="col-sm-5">
                         <div class="input-group date">
                             <div class="input-group-addon">
                               <i class="fa fa-calendar"></i>
@@ -38,7 +38,7 @@
                     </div>
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">User</label>
-                    <div class="col-sm-7">
+                    <div class="col-sm-5">
                       <select class="form-control select2" name="user">
                           <option value="">Pilih User</option>
                           <?php foreach ($user as $user) : ?>
@@ -56,6 +56,14 @@
                       <button type="submit" name="excel" id="btn_print" value="excel" class="btn btn-warning">Cetak Excel</button>
                     </div>
                   </div>
+                </div>
+                <br>
+                <div class='row'>
+                  <div class='col-lg-12'>
+                  <div class="alert alert-warning alert-dismissible">
+                    <h4 id="totalrp" style="text-align: center;"><i class="icon fa fa-money" ></i> Total Penjualan : Rp. <?php echo number_format($total) ?> </h4>
+                  </div>
+                </div>
                 </div>
               </form>
             </div>

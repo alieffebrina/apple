@@ -67,15 +67,22 @@
                   </div>
                 </div>
                 <div class="form-group">
+                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Pokok</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" readonly value="<?php echo 'Rp. '.number_format($barang->hargapokok) ?>">
+                  </div>
+                </div>
+                <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Harga Jual</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" readonly value="<?php echo 'Rp. '.number_format($barang->hargajual) ?>">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Harga Pokok</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Laba</label>
+                  <?php $laba = $barang->hargajual-$barang->hargapokok; ?>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" readonly value="<?php echo 'Rp. '.number_format($barang->hargapokok) ?>">
+                    <input type="text" class="form-control" readonly value="<?php echo 'Rp. '.number_format($laba) ?>">
                   </div>
                 </div>
                 <?php } ?>

@@ -72,7 +72,7 @@ class C_Penjualan extends CI_Controller{
         $this->load->view('template/sidebar.php', $data);
 
         
-        if($kodepenjualan == '1'){
+        if($kodepenjualan == '0'){
             $kode = $this->M_Penjualan->kodepenjualan();
             foreach ($kode as $kode) {
                 $a = $kode->kode_penjualan;
@@ -161,7 +161,7 @@ class C_Penjualan extends CI_Controller{
             }
 
             redirect('transaksi-add/'.$this->input->post('kode_penjualan') );
-        } else if ($this->input->post('simpantotal')== true){
+        } else {
             $data = $this->db->get_where('tb_detailsementara', ['kode_transaksi' => $this->input->post('kode_penjualan')])->result();
             $hargatotal = 0;
             foreach ($data as $data) {
@@ -202,11 +202,18 @@ class C_Penjualan extends CI_Controller{
 
             $hapus = array('kode_transaksi' => $this->input->post('kode_penjualan'));
             $this->M_Setting->delete($hapus,'tb_transaksisementara');
+            
+            if($this->input->post('simpanprint')== true){
+
+                redirect('C_Penjualan/print/'.$this->input->post('kode_penjualan'));
+            } else {
 
                 $this->session->set_flashdata('message', '<div class="alert alert-success left-icon-alert" role="alert">
                                                             <strong>Sukses!</strong> Berhasil Menambahkan Penjualan Baru.
                                                         </div>');
-            redirect('transaksi');
+                redirect('transaksi');
+            }
+            
         }
     }
 
@@ -267,6 +274,12 @@ class C_Penjualan extends CI_Controller{
             $data['akseshapus'] = $tombolhapus;
             $data['aksesedit'] = $tomboledit;
             $data['transaksi'] = $this->M_Penjualan->tanggal(); 
+            $j = 0; 
+            $jumlah = $this->M_Penjualan->tanggal(); 
+            foreach ($jumlah as $jumlah) {
+                $j = $j+$jumlah->hargatotal;
+            }
+            $data['total'] = $j;
             $data['user'] = $this->db->get('tb_user')->result();   
             $data['tgl'] = $tgl;
             $this->load->view('penjualan/v_laporan',$data); 
