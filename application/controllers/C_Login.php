@@ -12,7 +12,7 @@ class C_Login extends CI_Controller {
 
 	function index()
 	{
-		$this->load->view('template/login');
+		$this->load->view('template/v_login');
 		
 	}
 
@@ -25,7 +25,7 @@ class C_Login extends CI_Controller {
 			$this->session->set_flashdata('message', '<div class="alert alert-danger left-icon-alert " role="alert">
                                                             <strong>Gagal!</strong> Username dan Password anda salah
                                                         </div>');
-			$this->load->view('template/login');
+			$this->load->view('template/v_login');
 		} else {
 		    
         		$session = array(

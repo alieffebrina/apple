@@ -6,7 +6,7 @@
   <title>Point Of Sale - Apple Second Stuff</title>
   <!-- omahbaba -->
   <!-- garam -->
-  <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/apple/Favicon/favicon.ico"/>
+  <link rel="icon" type="image/png" href="<?php echo base_url() ?>assets/Favicon/favicon.ico"/>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
