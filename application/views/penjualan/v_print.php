@@ -124,7 +124,7 @@
             ?>
           <tr>
             <td><?php echo $no++ ?></td>
-            <td><?php echo $key->part_number.' / '.$imei ?></td>
+            <td><?php echo $key->part_number ?></td>
             <td><?php echo $key->nama_barang ?></td>
             <td><?php echo $key->qtt ?></td>
             <td><?php echo 'Rp. '.number_format($key->harga) ?></td>

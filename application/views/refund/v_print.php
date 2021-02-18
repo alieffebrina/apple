@@ -116,20 +116,20 @@
             $total = 0;
             foreach($detail as $key){ 
             $subtotal = ($key->qtt * $key->harga)-$key->diskon; 
-            if($key->id_imei != 0){
-              $query = $this->db->get_where('tb_imei', ['id_imei' => $key->id_imei])->result();
-              foreach ($query as $query) {
-                $imei = $query->imei;
-              }
-            } else {
-              $imei = '-';
-            }
+            // if($key->id_imei != 0){
+            //   $query = $this->db->get_where('tb_imei', ['id_imei' => $key->id_imei])->result();
+            //   foreach ($query as $query) {
+            //     $imei = $query->imei;
+            //   }
+            // } else {
+            //   $imei = '-';
+            // }
             $total = $total+ $subtotal;
 
             ?>
           <tr>
             <td><?php echo $no++ ?></td>
-            <td><?php echo $key->part_number.' / '.$imei ?></td>
+            <td><?php echo $key->part_number ?> ></td>
             <td><?php echo $key->nama_barang ?></td>
             <td><?php echo $key->qtt ?></td>
             <td><?php echo 'Rp. '.number_format($key->harga) ?></td>

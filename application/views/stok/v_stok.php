@@ -69,6 +69,7 @@
                   <th>Tanggal Transaksi</th>
                   <th>Kode Transaksi</th>
                   <th>Nama Barang</th>
+                  <th>Imei Number</th>
                   <th>Qtt</th>
                   <th>Stok saat ini</th>
                   <th>Keterangan</th>
@@ -83,6 +84,7 @@
                       <td><?php echo date('d-m-Y', strtotime($key->tgl_update)) ?></td>
                       <td><?php echo $key->kodetransaksi ?></td>
                       <td><?php echo $key->nama_barang.'-'.$key->varian ?></td>
+                      <td><?php echo $key->part_number ?></td>
                       <td><?php echo $key->stokberubah ?></td>
                       <td><?php echo $key->stoksisa ?></td>
                       <td><?php echo $key->keterangan ?></td>                 

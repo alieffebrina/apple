@@ -71,7 +71,7 @@
                 <tr>
                   <th>Nama barang</th>
                   <th>Varian</th>
-                  <th>Part Number</th>
+                  <th>Imei Number</th>
                   <th>Stok Awal</th>
                   <th>Stok Saat Ini</th>
                   <th>Harga Pokok</th>

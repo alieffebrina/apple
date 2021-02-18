@@ -74,7 +74,7 @@
                 <tr>
                   <th>Nama barang</th>
                   <th>Varian</th>
-                  <th>Part Number</th>
+                  <th>Imei Number</th>
                   <th>Stok Awal</th>
                   <th>Stok Saat Ini</th>
                   <th>Harga Pokok</th>
@@ -96,7 +96,7 @@
                         <div class="btn-group">
 
                             <a href="<?php echo site_url('barang-detail/'.$barang->id_barang); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
-                            <a href="<?php echo site_url('imei/'.$barang->id_barang); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-recycle"></i></button></a>
+                            <!-- <a href="<?php echo site_url('imei/'.$barang->id_barang); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-recycle"></i></button></a> -->
                           <?php if($aksesedit == 'aktif'){?>
                             <a href="<?php echo site_url('barang-edit/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                           <?php } ?>

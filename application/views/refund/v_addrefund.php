@@ -179,15 +179,15 @@
                     <tr><input type="hidden" class="form-control" id="no" name="no" value="<?php echo $no++ ?>">
                       <input type="hidden" class="form-control" id="barang" name="barang" value="<?php echo $detail->id_barang ?>">
                       <td><?php echo $detail->nama_barang ?></td>
-                      <?php if($detail->id_imei != 0){
+                      <!-- <?php if($detail->id_imei != 0){
                         $query = $this->db->get_where('tb_imei', ['id_imei' => $detail->id_imei])->result();
                         foreach ($query as $query) {
                           $imei = $query->imei;
                         }
                       } else {
                         $imei = '-';
-                      } ?>
-                      <td><input type="text" class="form-control" id="imei[]" name="imei[]" value="<?php echo $imei ?>"></td>
+                      } ?> -->
+                      <td><input type="text" class="form-control" id="imei[]" name="imei[]" value="<?php echo $detail->part_number ?>"></td>
                       <td><input type="text" class="form-control" id="diskon[]" name="diskon[]" value="<?php echo 'Rp. '.number_format($detail->diskon) ?>" readonly></td>
                       <td><input type="text" class="form-control" id="qtt[]" name="qtt[]" value="<?php echo $detail->qtt ?>" readonly></td>
                       <td><input type="text" class="form-control" id="harga[]" name="harga[]" value="<?php echo 'Rp. '.number_format($detail->harga) ?>" readonly></td>

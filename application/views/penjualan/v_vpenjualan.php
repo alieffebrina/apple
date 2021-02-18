@@ -145,7 +145,7 @@
                 <tr>
                   <td><?php echo $no++ ?></td>
                   <td><?php echo $viewdetail->nama_barang ?></td>
-                  <td><?php echo $imei ?></td>
+                  <td><?php echo $viewdetail->part_number ?></td>
                   <td><?php echo $viewdetail->qtt ?></td>
                   <td><?php echo 'Rp. '.number_format($viewdetail->harga) ?></td>
                   <td><?php echo 'Rp. '.number_format($viewdetail->diskon) ?></td>

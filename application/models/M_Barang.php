@@ -40,7 +40,7 @@ class M_Barang extends CI_Model {
             'part_number' => $this->input->post('part', true),
             'nama_barang' => $this->input->post('barang', true),
             'stokawal' => $this->input->post('awal', true),
-            'stoksisa' => '0',
+            'stoksisa' => '1',
             'hargajual' => preg_replace("/[^0-9]/", "", $this->input->post('hargajual')),
             'hargapokok' =>preg_replace("/[^0-9]/", "", $this->input->post('hargapokok')),
             'id_user' => $this->session->userdata('id_user'),

@@ -74,18 +74,18 @@
                     <input type="text" class="form-control" id="telp" name="telp"  value="<?php echo $tlp; ?>" maxlength="12">
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Email</label>
-                  <div class="col-sm-9">
-                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email; ?>" >
-                  </div>
+                  <div class="col-sm-9"> -->
+                    <input type="hidden" class="form-control" id="email" name="email" value=" alamatc" >
+                  <!-- </div
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Alamat</label>
-                  <div class="col-sm-9">
-                    <textarea class="form-control" name="alamatc"><?php echo $alamat; ?></textarea>
-                  </div>
-                </div>
+                  <div class="col-sm-9">alamatc -->
+                    <input type="hidden" class="form-control" id="alamatc" name="alamatc" value=" " >
+                 <!--  </div>
+                </div> -->
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Catatan </label>
                   <div class="col-sm-9">
@@ -126,22 +126,24 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Barang</label>
                   <div class="col-sm-9">
-                    <select class="js-states form-control select2" name="barangjual" id="barangjual">
+                      <div class="form-control">
+                    <select class="select2" name="barangjual" id="barangjual">
                         <option value="">Pilih Barang</option>
                         <?php foreach ($barang as $barang) : ?>
-                            <option value="<?= $barang->id_barang ?>"><?= $barang->nama_barang.' - '.$barang->varian.' - '.$barang->brand.' - '.$barang->kategori ?></option>
+                            <option value="<?= $barang->id_barang ?>"><?= $barang->part_number.' - '.$barang->nama_barang.' - '.$barang->varian.' - '.$barang->brand.' - '.$barang->kategori ?></option>
                         <?php endforeach; ?>
                     </select>
+                    </div>
                   </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Imei</label>
                   <div class="col-sm-9">
                     <select class="js-states form-control select2" id="imei" name="imei">
                         <option value="">Pilih Imei</option>
                     </select>
                   </div>
-                </div>
+                </div> -->
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Stok Awal</label>
                   <div class="col-sm-9">
@@ -152,7 +154,7 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Qtt</label>
                   <div class="col-sm-9">
-                    <input type="number" class="form-control" id="qtt" name="qtt" placeholder="Qtt" onkeyup='Calculate()'>
+                    <input type="number" class="form-control" id="qtt" name="qtt" value="1" onkeyup='Calculate()'>
                   </div>
                 </div>
                 <div class="form-group">
@@ -238,7 +240,8 @@
                 <tr>
                   <td><?php echo $no++ ?></td>
                   <td><?php echo $cek->nama_barang ?></td>
-                  <td><?php echo $imei ?></td>
+                  <td><?php echo $cek->part_number ?></td>
+                  <!-- <td><?php echo $imei ?></td> -->
                   <td><?php echo $cek->qtt ?></td>
                   <td><?php echo 'Rp. '.number_format($cek->harga) ?></td>
                   <td><?php echo 'Rp. '.number_format($cek->diskon) ?></td>

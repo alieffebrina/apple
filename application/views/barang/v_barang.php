@@ -32,7 +32,7 @@
             </div>
             <!-- /.box-header -->
             <!-- form start -->
-            <?php echo form_open("C_barang/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
+            <?php echo form_open("C_Barang/tambah", array('enctype'=>'multipart/form-data', 'class'=>'form-horizontal') ); ?>
               <div class="box-body">
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Nama Barang</label>
@@ -52,15 +52,15 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Part Number</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Imei Number</label>
                   <div class="col-sm-10">
-                    <input type="text" class="form-control" id="part" name="part" placeholder="Part Number">
+                    <input type="text" class="form-control" id="part" name="part" placeholder="Imei Number">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-2 control-label">Stok Awal</label>
                   <div class="col-sm-10">
-                    <input type="number" class="form-control" id="awal" name="awal" placeholder="Stok Awal">
+                    <input type="number" class="form-control" id="awal" name="awal" value="1">
                   </div>
                 </div>
                 <div class="form-group">
@@ -80,7 +80,7 @@
               <div class="box-footer">
                 <button type="reset" class="btn btn-default">Cancel</button>
                 <button type="submit" class="btn btn-info" name="simpan" value="simpan">Simpan</button>
-                <button type="submit" class="btn btn-success" name="simpan" value="imei">Imei</button>
+                <!-- <button type="submit" class="btn btn-success" name="simpan" value="imei">Imei</button> -->
               </div>
               <!-- /.box-footer -->
             <?php echo form_close();?>
@@ -103,7 +103,7 @@
                 <tr>
                   <th>Nama barang</th>
                   <th>Varian</th>
-                  <th>Part Number</th>
+                  <th>Imei Number</th>
                   <th>Stok Awal</th>
                   <th>Stok Saat Ini</th>
                   <th>Harga Pokok</th>
@@ -125,12 +125,12 @@
                         <div class="btn-group">
 
                             <a href="<?php echo site_url('barang-detail/'.$barang->id_barang); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
-                            <a href="<?php echo site_url('imei/'.$barang->id_barang); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-recycle"></i></button></a>
+                            
                           <?php if($aksesedit == 'aktif'){?>
                             <a href="<?php echo site_url('barang-edit/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                           <?php } ?>
                           <?php if($akseshapus == 'aktif'){?>
-                            <a href="<?php echo site_url('C_barang/hapus/'.$barang->id_barang); ?>" onclick="return confirm('Yakin Dihapus ?') "><button type="button" class="btn btn-danger" data-placement="bottom" title="Hapus!"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                            <a href="<?php echo site_url('C_Barang/hapus/'.$barang->id_barang); ?>" onclick="return confirm('Yakin Dihapus ?') "><button type="button" class="btn btn-danger" data-placement="bottom" title="Hapus!"><i class="fa fa-fw fa-trash-o"></i></button></a>
                           <?php } ?>
                         </div>
                       </td>

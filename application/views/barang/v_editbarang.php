@@ -55,7 +55,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Part Number</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Imei Number</label>
                   <div class="col-sm-10">
                     <input type="text" class="form-control" id="part" name="part" value="<?php echo $barange->part_number ?>">
                   </div>
@@ -106,7 +106,7 @@
                 <tr>
                   <th>Nama barang</th>
                   <th>Varian</th>
-                  <th>Part Number</th>
+                  <th>Imei Number</th>
                   <th>Stok Awal</th>
                   <th>Stok Saat Ini</th>
                   <th>Harga Pokok</th>
@@ -128,12 +128,12 @@
                         <div class="btn-group">
 
                             <a href="<?php echo site_url('barang-detail/'.$barang->id_barang); ?>"><button type="button" class="btn btn-primary" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-search"></i></button></a>
-                            <a href="<?php echo site_url('imei/'.$barang->id_barang); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-recycle"></i></button></a>
+                            <!-- <a href="<?php echo site_url('imei/'.$barang->id_barang); ?>"><button type="button" class="btn btn-warning" data-toggle="tooltip" data-placement="bottom" title="View!"><i class="fa fa-fw fa-recycle"></i></button></a> -->
                           <?php if($aksesedit == 'aktif'){?>
                             <a href="<?php echo site_url('barang-edit/'.$barang->id_barang); ?>"><button type="button" class="btn btn-success" data-toggle="tooltip" data-placement="bottom" title="View Edit!"><i class="fa fa-fw fa-pencil-square-o"></i></button></a>
                           <?php } ?>
                           <?php if($akseshapus == 'aktif'){?>
-                            <a href="<?php echo site_url('C_barang/hapus/'.$barang->id_barang); ?>" onclick="return confirm('Yakin Dihapus ?') "><button type="button" class="btn btn-danger" data-placement="bottom" title="Hapus!"><i class="fa fa-fw fa-trash-o"></i></button></a>
+                            <a href="<?php echo site_url('C_Barang/hapus/'.$barang->id_barang); ?>" onclick="return confirm('Yakin Dihapus ?') "><button type="button" class="btn btn-danger" data-placement="bottom" title="Hapus!"><i class="fa fa-fw fa-trash-o"></i></button></a>
                           <?php } ?>
                         </div>
                       </td>
