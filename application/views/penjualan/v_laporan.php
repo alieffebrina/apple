@@ -77,7 +77,7 @@
             </div>
             <!-- /.box-header -->
 
-            <div class="box-body">
+            <div class="box-body table-responsive no-padding">
               
 
               <table id="example2" class="table table-bordered table-striped">

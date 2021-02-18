@@ -356,6 +356,7 @@ function toggle(source) {
           $("#stok").val(response.list_sisastok);
           $("#namabarang").val(response.namabarang);
           $("#hargajual").val(response.list_harga);
+          $("#subtotal").val(response.list_harga);
         },
         error: function (xhr, ajaxOptions, thrownError) { // Ketika ada error
           alert(xhr.status + "\n" + xhr.responseText + "\n" + thrownError); // Munculkan alert error

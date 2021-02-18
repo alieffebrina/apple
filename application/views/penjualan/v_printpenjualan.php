@@ -93,10 +93,10 @@
 
     <!-- Table row -->
     <div class="row">
-      <div class="col-xs-12 table-responsive">
-        <table class="table table-striped">
-          <thead>
-          <tr>
+      <div class="col-xs-12">
+        <table border="3" width="100%" style="text-align: center;">
+          <thead >
+          <tr style="text-align: center;">
             <th>No</th>
             <th>Product Code </th>
             <th>Description</th>

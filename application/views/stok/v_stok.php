@@ -28,7 +28,7 @@
                   <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Barang</label>
                     <div class="col-sm-7">
-                      <select class="form-control select2" name="barang">
+                <select class="form-control select2" style="width: 100%;" name="barang">
                           <option value="">Pilih Barang</option>
                           <?php foreach ($barang as $barang) : ?>
                               <option value="<?= $barang->id_barang ?>" <?php if($idbarang != ''){ if($idbarang == $barang->id_barang){ echo "selected"; } } ?> ><?= $barang->nama_barang ?></option>
@@ -61,7 +61,7 @@
             </div>
             <!-- /.box-header -->
 
-            <div class="box-body">
+            <div class="box-body table-responsive no-padding">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>

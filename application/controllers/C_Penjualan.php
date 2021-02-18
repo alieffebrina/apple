@@ -126,7 +126,7 @@ class C_Penjualan extends CI_Controller{
             }
             $barang = $this->M_Barang->getdetail($id);
             foreach ($barang as $hargabarang) {
-                    $hargajual = $hargabarang->hargajual;
+                    $hargajual = 'Rp. '.number_format($hargabarang->hargajual);
                     $stok = $hargabarang->stoksisa;
                     $namabarang = $hargabarang->nama_barang.'-'.$hargabarang->varian.'-'.$hargabarang->brand;
             }

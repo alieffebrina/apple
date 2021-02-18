@@ -126,14 +126,12 @@
                 <div class="form-group">
                   <label for="inputEmail3" class="col-sm-3 control-label">Barang</label>
                   <div class="col-sm-9">
-                      <div class="form-control">
-                    <select class="select2" name="barangjual" id="barangjual">
-                        <option value="">Pilih Barang</option>
+                <select class="form-control select2" style="width: 100%;" name="barangjual" id="barangjual">
+                        <option value="" selected="selected">Pilih Barang</option>
                         <?php foreach ($barang as $barang) : ?>
                             <option value="<?= $barang->id_barang ?>"><?= $barang->part_number.' - '.$barang->nama_barang.' - '.$barang->varian.' - '.$barang->brand.' - '.$barang->kategori ?></option>
                         <?php endforeach; ?>
                     </select>
-                    </div>
                   </div>
                 </div>
                 <!-- <div class="form-group">
@@ -210,7 +208,7 @@
                 </div>
               </div>
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body table-responsive no-padding">
               <table class="table table-bordered">
                 <tr>
                   <th style="width: 10px">#</th>

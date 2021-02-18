@@ -27,7 +27,7 @@
             <!-- /.box-header -->
             <!-- form start -->
             <form class="form-horizontal" method="POST" action="<?php echo site_url('C_Setting/edit')?>">
-            <div class="box-body">
+            <div class="box-body table-responsive no-padding">
               <table class="table">
                 <thead>
                 <tr>

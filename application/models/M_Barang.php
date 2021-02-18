@@ -175,7 +175,7 @@ class M_Barang extends CI_Model {
 
     public function history(){
         $this->db->order_by('tb_historystok.id_historystok', 'DESC');
-        $this->db->select('tb_barang.nama_barang nama_barang, tb_varian.varian varian, tb_historystok.*, tb_user.nama namauser');
+        $this->db->select('tb_barang.nama_barang nama_barang, tb_barang.part_number, tb_varian.varian varian, tb_historystok.*, tb_user.nama namauser');
         
         $this->db->join('tb_barang', 'tb_barang.id_barang = tb_historystok.id_barang');
         $this->db->join('tb_varian', 'tb_varian.id_varian = tb_barang.id_varian');

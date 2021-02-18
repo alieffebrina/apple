@@ -11,7 +11,7 @@ class M_Penjualan extends CI_Model {
             'emailc' => $this->input->post('email'),
             'alamatc' => $this->input->post('alamatc'),
             'catatanc' => $this->input->post('catatan'),
-            'hargatotal' => $this->input->post('total'),
+            'hargatotal' => preg_replace("/[^0-9]/", "", $this->input->post('total')),
             'id_ekspedisi' => $this->input->post('ekspedisi'),
             'jenistransaksi' => $this->input->post('jenistransaksi'),
             'garansi' => $this->input->post('garansi'),
@@ -44,7 +44,7 @@ class M_Penjualan extends CI_Model {
             'emailc' => $this->input->post('email'),
             'alamatc' => $this->input->post('alamatc'),
             'catatanc' => $this->input->post('catatan'),
-            'hargatotal' => $this->input->post('total'),
+            'hargatotal' => preg_replace("/[^0-9]/", "", $this->input->post('total')),
             'id_ekspedisi' => $this->input->post('ekspedisi'),
             'jenistransaksi' => $this->input->post('jenistransaksi'),
             'garansi' => $this->input->post('garansi'),
@@ -69,7 +69,7 @@ class M_Penjualan extends CI_Model {
     }
 
      function detail($kode_transaksi){
-        $this->db->select('tb_barang.id_barang barangkode, tb_detailtransaksi.*, tb_barang.nama_barang');
+        $this->db->select('tb_barang.id_barang barangkode, tb_barang.part_number, tb_detailtransaksi.*, tb_barang.nama_barang');
         $this->db->join('tb_barang', 'tb_barang.id_barang = tb_detailtransaksi.id_barang');
         $this->db->where('kode_transaksi',$kode_transaksi);
         return $this->db->get('tb_detailtransaksi')->result();
@@ -134,7 +134,7 @@ class M_Penjualan extends CI_Model {
         $penjualan = array(
             'id_imei' => $this->input->post('imei'),
             'id_barang' => $this->input->post('barangjual'),
-            'harga' => $this->input->post('hargajual'),
+            'harga' => preg_replace("/[^0-9]/", "", $this->input->post('hargajual')),
             'diskon' => $this->input->post('diskon'),
             'qtt' => $this->input->post('qtt'),
             'kode_transaksi' => $this->input->post('kode_penjualan'),
@@ -148,7 +148,7 @@ class M_Penjualan extends CI_Model {
         $penjualan = array(
             'id_imei' => $this->input->post('imei'),
             'id_barang' => $this->input->post('barangjual'),
-            'harga' => $this->input->post('hargajual'),
+            'harga' => preg_replace("/[^0-9]/", "", $this->input->post('hargajual')),
             'diskon' => $this->input->post('diskon'),
             'qtt' => $this->input->post('qtt'),
             'kode_transaksi' => $this->input->post('kode_penjualan'),

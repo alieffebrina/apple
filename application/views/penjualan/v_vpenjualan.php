@@ -114,7 +114,7 @@
               </div>
 
             <!-- /.box-header -->
-            <div class="box-body">
+            <div class="box-body table-responsive no-padding">
               <table class="table table-bordered">
                 <tr>
                   <th style="width: 10px">#</th>
